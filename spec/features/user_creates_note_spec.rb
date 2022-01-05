@@ -15,5 +15,4 @@ feature 'User creates note' do
     expect(page).to have_css 'h2', text: 'Test note'
     expect(page).to have_css '.note .content', text: 'Test note content'
   end
-
 end
