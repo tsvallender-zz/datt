@@ -6,7 +6,6 @@ feature 'User creates note' do
     sign_in @user
     visit root_path
     click_on 'New note'
-    visit new_note_path
     expect(page.title).to include 'New note'
     expect(page).to have_css 'h2', text: 'New note'
     fill_in 'note_title', with: 'Test note'
