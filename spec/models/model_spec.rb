@@ -24,4 +24,11 @@ RSpec.describe Note, :type => :model do
       expect(note).to be_valid
     end
   end
+
+  context "without user" do
+    it "is invalid" do
+      note = Note.new(title: "Test", content: "Test note")
+      expect(note).to be_invalid
+    end
+  end
 end
