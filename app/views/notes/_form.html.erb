@@ -1,14 +1,17 @@
 <%= form_with model: @note do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <% if @note.public_attributes.include? :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  <% end %>
 
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+  <% if @note.public_attributes.include? :content %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  <% end %>
 
-  <% case @note.class.to_s %>
-  <% when 'Todo' %>
+  <% if @note.public_attributes.include? :due_date %>
     <%= f.label :due_date %>
     <%= f.date_field :due_date %>
   <% end %>
