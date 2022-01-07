@@ -9,7 +9,14 @@ class NotesController < ApplicationController
   end
 
   def new
-    @note = Note.new
+    case params[:type]
+    when 'todo'
+      @note = Todo.new
+    else
+      @note = Note.new
+    end
+
+    @note
   end
 
   def create

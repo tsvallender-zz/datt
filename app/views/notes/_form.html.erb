@@ -7,5 +7,16 @@
   <%= f.label :content %>
   <%= f.text_area :content %>
 
+  <% case @note.class.to_s %>
+  <% when 'Todo' %>
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date %>
+  <% end %>
+
   <%= f.submit yield :button_text %>
+
+  <ul id="note_types">
+    <li><%= link_to 'Note', new_note_path, id: 'note' %></li>
+    <li><%= link_to 'Todo', new_note_path(type: 'todo'), id: 'todo' %></li>
+  </ul>
 <% end %>
