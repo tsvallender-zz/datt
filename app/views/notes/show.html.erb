@@ -2,4 +2,8 @@
 
 <div class="note">
   <div class="content"><%= @note.content %></div>
+
+  <% if @note.public_attributes.include? :due_date %>
+    <div class="due_date"><%= @note.due_date %></div>
+  <% end %>
 </div>

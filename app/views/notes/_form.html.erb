@@ -1,5 +1,7 @@
-<%= form_with model: @note do |f| %>
+<%= form_with model: @note.becomes(Note) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :type, value: @note.class.name %>
 
   <% if @note.public_attributes.include? :title %>
     <%= f.label :title %>
