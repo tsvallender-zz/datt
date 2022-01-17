@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User marks a todo done' do
-  scenario "successfully" do
+  scenario "on show page" do
     @user ||= FactoryBot.create :user
     todo = @user.notes.build(
       title: 'My todo', content: 'My todo',
@@ -11,8 +11,21 @@ feature 'User marks a todo done' do
     visit todo_path(todo.id)
     expect(page).to have_unchecked_field 'Done?'
     page.check 'Done?'
-    click_on 'Update Todo' # Manual as no JavaScript@
+    click_on 'Update Todo' # Manual as no JavaScript
     visit todo_path(todo.id)
+    expect(page).to have_checked_field 'todo_done'
+  end
+
+  scenario "on index page" do
+    @user ||= FactoryBot.create :user
+    todo = @user.notes.build(
+      title: 'My todo', content: 'My todo',
+      type: 'Todo', due_date: Date.tomorrow)
+    todo.save!
+    sign_in @user
+    visit todos_path
+    page.check 'todo_' + todo.id.to_s + '_done'
+    click_on 'submit_'+todo.id.to_s # Manual as no JavaScript
     expect(page).to have_checked_field 'todo_done'
   end
 end

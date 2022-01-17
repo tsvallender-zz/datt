@@ -1,7 +1,7 @@
 <%= provide :title, 'Notes' %>
 
 <% @notes.each do |note| %>
-  <div class="note">
+  <div class="note" id="note-<%= note.id %>">
     <%= link_to note do %>
       <h4 class="title"><%= note.title %></h4>
     <% end %>
@@ -10,13 +10,14 @@
       <div class="due_date"><%= note.due_date %></div>
     <% end %>
     <% if note.public_attributes.include? :done %>
-    <%= form_with model: note.becomes(Todo), method: 'put' do |f| %>
-      <%= f.label :done, 'Done?' %>
-      <%= f.check_box :done, checked: note.done?, onchange: 'this.form.submit();' %>
-      <noscript>
-        <%= f.submit %>
-      </noscript>
-    <% end %>
+      <%= form_with model: note.becomes(Todo), method: 'put' do |f| %>
+        <%= f.label :done, 'Done?' %>
+        <%= f.check_box :done, checked: note.done?,
+            index: note.id, name: 'todo[done]', onchange: 'this.form.submit();' %>
+        <noscript>
+          <%= f.submit id: 'submit_'+note.id.to_s %>
+        </noscript>
+      <% end %>
     <% end %>
   </div>
 <% end %>
