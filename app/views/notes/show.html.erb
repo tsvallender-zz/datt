@@ -6,4 +6,9 @@
   <% if @note.public_attributes.include? :due_date %>
     <div class="due_date"><%= @note.due_date %></div>
   <% end %>
+  <% if @note.public_attributes.include? :done %>
+    <div class="done">
+      <%= check_box_tag 'done', 'done', @note.done? %>
+    </div>
+  <% end %>
 </div>

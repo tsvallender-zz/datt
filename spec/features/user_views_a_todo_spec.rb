@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User views their todos' do
+feature 'User views a todo' do
   scenario "successfully" do
     @user ||= FactoryBot.create :user
     todo = @user.notes.build(
@@ -12,5 +12,6 @@ feature 'User views their todos' do
     expect(page).to have_css 'h2', text: 'My todo'
     expect(page).to have_css '.note .content', text: 'My todo'
     expect(page).to have_css '.note .due_date'
+    expect(page).to have_css 'input[type=checkbox]#done'
   end
 end

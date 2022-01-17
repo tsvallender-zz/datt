@@ -2,7 +2,7 @@ class Todo < Note
   validates :due_date, presence: true
 
   def public_attributes
-    [:title, :content, :due_date]
+    [:title, :content, :due_date, :done]
   end
 
   # Route todos to the notes path

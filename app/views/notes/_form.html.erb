@@ -18,6 +18,10 @@
     <%= f.date_field :due_date %>
   <% end %>
 
+  <% if @note.public_attributes.include? :done %>
+    <%= f.hidden_field :done, value: false %>
+  <% end %>
+
   <%= f.submit yield :button_text %>
 
   <ul id="note_types">
