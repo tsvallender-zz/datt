@@ -7,8 +7,12 @@
     <div class="due_date"><%= @note.due_date %></div>
   <% end %>
   <% if @note.public_attributes.include? :done %>
-    <div class="done">
-      <%= check_box_tag 'done', 'done', @note.done? %>
-    </div>
+    <%= form_with model: @note.becomes(Todo), method: 'put' do |f| %>
+      <%= f.label :done, 'Done?' %>
+      <%= f.check_box :done, checked: @note.done?, onchange: 'this.form.submit();' %>
+      <noscript>
+        <%= f.submit %>
+      </noscript>
+    <% end %>
   <% end %>
 </div>

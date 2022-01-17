@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User views a todo' do
+feature 'User marks a todo done' do
   scenario "successfully" do
     @user ||= FactoryBot.create :user
     todo = @user.notes.build(
@@ -9,9 +9,10 @@ feature 'User views a todo' do
     todo.save!
     sign_in @user
     visit todo_path(todo.id)
-    expect(page).to have_css 'h2', text: 'My todo'
-    expect(page).to have_css '.note .content', text: 'My todo'
-    expect(page).to have_css '.note .due_date'
-    expect(page).to have_css 'input[type=checkbox]#todo_done'
+    expect(page).to have_unchecked_field 'Done?'
+    page.check 'Done?'
+    click_on 'Update Todo' # Manual as no JavaScript@
+    visit todo_path(todo.id)
+    expect(page).to have_checked_field 'todo_done'
   end
 end
