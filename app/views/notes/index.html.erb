@@ -2,7 +2,9 @@
 
 <% @notes.each do |note| %>
   <div class="note">
-    <h4 class="title"><%= note.title %></h4>
+    <%= link_to note do %>
+      <h4 class="title"><%= note.title %></h4>
+    <% end %>
     <div class="content"><%= note.content %></div>
   </div>
 <% end %>
