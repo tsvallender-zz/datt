@@ -1,6 +1,11 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:update]
 
+  def index
+    @notes = current_user.todos
+    render '/notes/index'
+  end
+
   def update
     @todo.update todo_params
     

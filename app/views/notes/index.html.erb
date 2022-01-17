@@ -9,5 +9,14 @@
     <% if note.public_attributes.include? :due_date %>
       <div class="due_date"><%= note.due_date %></div>
     <% end %>
+    <% if note.public_attributes.include? :done %>
+    <%= form_with model: note.becomes(Todo), method: 'put' do |f| %>
+      <%= f.label :done, 'Done?' %>
+      <%= f.check_box :done, checked: note.done?, onchange: 'this.form.submit();' %>
+      <noscript>
+        <%= f.submit %>
+      </noscript>
+    <% end %>
+    <% end %>
   </div>
 <% end %>
