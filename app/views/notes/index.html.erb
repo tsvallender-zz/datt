@@ -1,8 +1,8 @@
 <%= provide :title, 'Notes' %>
 
-<%= @notes.each do |note| %>
+<% @notes.each do |note| %>
   <div class="note">
     <h4 class="title"><%= note.title %></h4>
-    <div class="content"><%= note.content %></h4>
+    <div class="content"><%= note.content %></div>
   </div>
 <% end %>
