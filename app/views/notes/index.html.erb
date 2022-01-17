@@ -6,5 +6,8 @@
       <h4 class="title"><%= note.title %></h4>
     <% end %>
     <div class="content"><%= note.content %></div>
+    <% if note.public_attributes.include? :due_date %>
+      <div class="due_date"><%= note.due_date %></div>
+    <% end %>
   </div>
 <% end %>
