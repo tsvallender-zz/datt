@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show]
+  before_action :set_note, only: [:show, :update]
   
   def index
     @notes = current_user.notes
@@ -29,9 +29,16 @@ class NotesController < ApplicationController
     redirect_to note
   end
 
+  def update
+    @note.update note_params
+    
+    redirect_to @note
+  end
+
   private
   def note_params
-    params.require(:note).permit(:title, :content, :due_date, :type, :done)
+    params.require(:note).permit(:title, :content, :due_date,
+                                 :type, :done)
   end
 
   def set_note

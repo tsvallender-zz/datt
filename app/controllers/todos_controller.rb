@@ -6,12 +6,6 @@ class TodosController < ApplicationController
     render '/notes/index'
   end
 
-  def update
-    @todo.update todo_params
-    
-    redirect_to @todo
-  end
-
   private
   def set_todo
     @todo = Todo.find(params[:id])

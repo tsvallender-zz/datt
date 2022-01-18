@@ -12,6 +12,6 @@ feature 'User views a todo' do
     expect(page).to have_css 'h2', text: 'My todo'
     expect(page).to have_css '.note .content', text: 'My todo'
     expect(page).to have_css '.note .due_date'
-    expect(page).to have_css 'input[type=checkbox]#todo_done'
+    expect(page).to have_css 'input[type=checkbox]#note_done'
   end
 end
