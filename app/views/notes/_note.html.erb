@@ -1,0 +1,19 @@
+<turbo-frame class="note" id="note-<%= note.id %>">
+  <%= link_to note, target: '_top' do %>
+    <h4 class="title"><%= note.title %></h4>
+  <% end %>
+  <div class="content"><%= note.content %></div>
+  <% if note.public_attributes.include? :due_date %>
+    <div class="due_date"><%= note.due_date %></div>
+  <% end %>
+  <% if note.public_attributes.include? :done %>
+    <%= form_with model: note.becomes(Note), method: 'put' do |f| %>
+      <%= f.label :done, 'Done?' %>
+      <%= f.check_box :done, checked: note.done?,
+          index: note.id, name: 'note[done]', onchange: 'this.form.submit();' %>
+      <noscript>
+        <%= f.submit id: 'submit_'+note.id.to_s %>
+      </noscript>
+    <% end %>
+  <% end %>
+</turbo-frame>
