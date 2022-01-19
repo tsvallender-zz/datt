@@ -8,7 +8,7 @@
   <% end %>
   <% if note.public_attributes.include? :done %>
     <%= form_with model: note.becomes(Note), method: 'put' do |f| %>
-      <%= f.label :done, 'Done?' %>
+      <%= f.label :done, 'Done?', index: note.id %>
       <%= f.check_box :done, checked: note.done?,
           index: note.id, name: 'note[done]', onchange: 'this.form.submit();' %>
       <noscript>

@@ -3,10 +3,16 @@ class Note < ApplicationRecord
 
   validate :title_or_content_present?
 
+  after_initialize :set_defaults
+
   def public_attributes
     [:title, :content]
   end
-  
+
+  def set_defaults
+    self.type ||= 'Note'
+  end
+
   private
   def title_or_content_present?
     if self.title.blank? && self.content.blank?

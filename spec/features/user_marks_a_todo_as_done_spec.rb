@@ -13,7 +13,7 @@ feature 'User marks a todo done' do
     page.check 'Done?'
     click_on 'Update' # Manual as no JavaScript
     visit todo_path(todo.id)
-    expect(page).to have_checked_field 'note_done'
+    expect(page).to have_checked_field 'Done?'
   end
 
   scenario "on index page" do
@@ -26,6 +26,7 @@ feature 'User marks a todo done' do
     visit todos_path
     page.check 'note_' + todo.id.to_s + '_done'
     click_on 'submit_'+todo.id.to_s # Manual as no JavaScript
-    expect(page).to have_checked_field 'note_done'
+    visit todo_path(todo.id)
+    expect(page).to have_checked_field 'note_' + todo.id.to_s + '_done'
   end
 end

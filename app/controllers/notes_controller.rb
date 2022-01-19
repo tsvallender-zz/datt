@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update]
   
   def index
-    @notes = current_user.notes
+    @notes = current_user.notes.where type: 'Note'
   end
 
   def show
