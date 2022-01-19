@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'date'
 
-feature 'User creates note' do
+feature 'User creates note', js: true do
   scenario 'successfully' do
     @user ||= FactoryBot.create :user
     sign_in @user
@@ -30,7 +30,7 @@ def create_note(type: :note, fields: {})
   end
 
   fill_in 'Title', with: 'Test note'
-  fill_in 'Content', with: 'Test note content'
+  find(:css, '#note_content').click.set('Test note content')
   fields.each do | field, data |
     fill_in field, with: data
   end

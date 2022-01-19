@@ -10,7 +10,7 @@
 
   <% if @note.public_attributes.include? :content %>
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.rich_text_area :content %>
   <% end %>
 
   <% if @note.public_attributes.include? :due_date %>

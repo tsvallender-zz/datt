@@ -1,6 +1,8 @@
 class Note < ApplicationRecord
   belongs_to :user
 
+  has_rich_text :content
+
   validate :title_or_content_present?
 
   after_initialize :set_defaults
